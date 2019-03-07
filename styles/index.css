@@ -27,6 +27,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     background-color: yellow;
     border: 1px solid cyan;
+    color: darkorchid;
 }
 
 .output {
@@ -35,4 +36,5 @@ body {
     font-size: 30px;
     text-align: center;
     width: 500px;
+    height: 150px;
 }
