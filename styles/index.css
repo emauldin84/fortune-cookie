@@ -24,6 +24,9 @@ body {
 
 .input {
     margin: 10px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: yellow;
+    border: 1px solid cyan;
 }
 
 .output {
