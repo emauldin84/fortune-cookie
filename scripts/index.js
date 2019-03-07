@@ -13,21 +13,20 @@ const jokeArray = [
 const jokeDisplay = document.querySelector('[data-output]');
 const button = document.querySelectorAll('[data-input]');
 
-function respondToButtonClick(array) {
+let seatNumber = 0;
+function respondToButtonClick() {
+    seatNumber += 1
+
+    if (seatNumber === jokeArray.length) {
+        seatNumber = 1;
+    }
     
-    for (let i = 0; i <= array.length; i++) {
-        jokeDisplay.textContent = array[i];
-        
-        if (i === array.length + 1) {
-            i = 1;
-        };
-    };
-    
-    
+    jokeDisplay.textContent = jokeArray[seatNumber];
+    console.log( seatNumber );
 };
 
 function attachClickEvent(eachButton) {
-    eachButton.addEventListener('click', respondToButtonClick(jokeArray));
+    eachButton.addEventListener('click', respondToButtonClick);
 };
 
 button.forEach(attachClickEvent);

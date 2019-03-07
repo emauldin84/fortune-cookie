@@ -33,4 +33,6 @@ body {
     color: pink;
     font-family: 'Arvo', serif;
     font-size: 30px;
+    text-align: center;
+    width: 500px;
 }
