@@ -1,5 +1,4 @@
 const jokeArray = [
-    " ",
     "I wear a stethoscope so that in a medical emergency I can teach people a valuable lesson about assumptions.",
     "I adopted my dog from a blacksmith. As soon as we got home he made a bolt for the door.",
     "How many hipsters does it take to change a lightbulb? Oh, it's a really  obscure number. You've probably never heard of it.",
@@ -12,17 +11,20 @@ const jokeArray = [
 
 const jokeDisplay = document.querySelector('[data-output]');
 const button = document.querySelectorAll('[data-input]');
+// const allbuttons = document.querySelectorAll('[data-input]')
 
-let seatNumber = 0;
+let seatNumber = 1;
 function respondToButtonClick() {
-    seatNumber += 1
+    seatNumber += 1;
+    jokeDisplay.classList.remove('hidden');
 
     if (seatNumber === jokeArray.length) {
         seatNumber = 1;
     }
     
     jokeDisplay.textContent = jokeArray[seatNumber];
-    console.log( seatNumber );
+    console.log(seatNumber);
+    return seatNumber;
 };
 
 function attachClickEvent(eachButton) {
@@ -31,5 +33,27 @@ function attachClickEvent(eachButton) {
 
 button.forEach(attachClickEvent);
 
+// Bonus #1: Previous/Next. Add reverse order button
+const buttonReverse = document.querySelectorAll('[data-input-reverse]');
+
+// let seatNumberReverse = seatNumber;
+function respondToButtonReverse() {
+    seatNumber -= 1;
+    jokeDisplay.classList.remove('hidden');
+    
+    if (seatNumber === 0) {
+        seatNumber = jokeArray.length - 1
+    };
+    jokeDisplay.textContent = jokeArray[seatNumber];
+
+    console.log(seatNumber);
+
+};
+
+function attachReverseClickEvent(eachButton) {
+    eachButton.addEventListener('click', respondToButtonReverse)
+};
+
+buttonReverse.forEach(attachReverseClickEvent);
 
 
