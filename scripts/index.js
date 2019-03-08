@@ -56,4 +56,21 @@ function attachReverseClickEvent(eachButton) {
 
 buttonReverse.forEach(attachReverseClickEvent);
 
+// Bonus #2: Random Fortune
+const buttonRandom = document.querySelectorAll('[data-input-random]');
 
+function respondToButtonRandom() {
+    // set seatNumber to random number between 0 and jokeArray.length -1
+    seatNumber = Math.floor(Math.random() * (jokeArray.length - 1));
+    jokeDisplay.classList.remove('hidden');
+    
+    jokeDisplay.textContent = jokeArray[seatNumber];
+
+    console.log(seatNumber);
+};
+
+function attachRandomClickEvent(eachButton) {
+    eachButton.addEventListener('click', respondToButtonRandom);
+
+};
+buttonRandom.forEach(attachRandomClickEvent);
