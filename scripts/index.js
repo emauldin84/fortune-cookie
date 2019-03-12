@@ -9,68 +9,87 @@ const jokeArray = [
 ];
 
 
-const jokeDisplay = document.querySelector('[data-output]');
-const button = document.querySelectorAll('[data-input]');
-// const allbuttons = document.querySelectorAll('[data-input]')
 
-let seatNumber = 1;
-function respondToButtonClick() {
-    seatNumber += 1;
-    jokeDisplay.classList.remove('hidden');
 
-    if (seatNumber === jokeArray.length) {
-        seatNumber = 1;
-    }
+url = 'http://loremricksum.com/api/?paragraphs=10&quotes=1'
+fetch(url)
+.then(function(response) {
+    return response.json();
+})
+.then(function(quoteData) {
+    console.log(quoteData['data']); // or function to append to page
     
-    jokeDisplay.textContent = jokeArray[seatNumber];
-    console.log(seatNumber);
-    return seatNumber;
-};
-
-function attachClickEvent(eachButton) {
-    eachButton.addEventListener('click', respondToButtonClick);
-};
-
-button.forEach(attachClickEvent);
-
-// Bonus #1: Previous/Next. Add reverse order button
-const buttonReverse = document.querySelectorAll('[data-input-reverse]');
-
-// let seatNumberReverse = seatNumber;
-function respondToButtonReverse() {
-    seatNumber -= 1;
-    jokeDisplay.classList.remove('hidden');
+    const jokeDisplay = document.querySelector('[data-output]');
+    const button = document.querySelectorAll('[data-input]');
+    // const allbuttons = document.querySelectorAll('[data-input]')
     
-    if (seatNumber === 0) {
-        seatNumber = jokeArray.length - 1
+    let seatNumber = 1;
+    function respondToButtonClick() {
+        seatNumber += 1;
+        jokeDisplay.classList.remove('hidden');
+    
+        if (seatNumber === quoteData['data'].length) {
+            seatNumber = 1;
+        }
+        
+        jokeDisplay.textContent = quoteData['data'][seatNumber];
+        // console.log(quoteData.length);
+        return seatNumber;
     };
-    jokeDisplay.textContent = jokeArray[seatNumber];
-
-    console.log(seatNumber);
-
-};
-
-function attachReverseClickEvent(eachButton) {
-    eachButton.addEventListener('click', respondToButtonReverse)
-};
-
-buttonReverse.forEach(attachReverseClickEvent);
-
-// Bonus #2: Random Fortune
-const buttonRandom = document.querySelectorAll('[data-input-random]');
-
-function respondToButtonRandom() {
-    // set seatNumber to random number between 0 and jokeArray.length -1
-    seatNumber = Math.floor(Math.random() * (jokeArray.length - 1));
-    jokeDisplay.classList.remove('hidden');
     
-    jokeDisplay.textContent = jokeArray[seatNumber];
+    function attachClickEvent(eachButton) {
+        eachButton.addEventListener('click', respondToButtonClick);
+    };
+    
+    button.forEach(attachClickEvent);
+    
+    // Bonus #1: Previous/Next. Add reverse order button
+    const buttonReverse = document.querySelectorAll('[data-input-reverse]');
+    
+    // let seatNumberReverse = seatNumber;
+    function respondToButtonReverse() {
+        seatNumber -= 1;
+        jokeDisplay.classList.remove('hidden');
+        
+        if (seatNumber === 0) {
+            seatNumber = quoteData['data'].length - 1
+        };
+        jokeDisplay.textContent = quoteData['data'][seatNumber];
+    
+        console.log(seatNumber);
+    
+    };
+    
+    function attachReverseClickEvent(eachButton) {
+        eachButton.addEventListener('click', respondToButtonReverse)
+    };
+    
+    buttonReverse.forEach(attachReverseClickEvent);
+    
+    // Bonus #2: Random Fortune
+    const buttonRandom = document.querySelectorAll('[data-input-random]');
+    
+    function respondToButtonRandom() {
+        // set seatNumber to random number between 0 and quoteData.length -1
+        seatNumber = Math.floor(Math.random() * (quoteData['data'].length - 1));
+        jokeDisplay.classList.remove('hidden');
+        
+        jokeDisplay.textContent = quoteData['data'][seatNumber];
+    
+        console.log(seatNumber);
+    };
+    
+    function attachRandomClickEvent(eachButton) {
+        eachButton.addEventListener('click', respondToButtonRandom);
+    
+    };
+    buttonRandom.forEach(attachRandomClickEvent);
 
-    console.log(seatNumber);
-};
 
-function attachRandomClickEvent(eachButton) {
-    eachButton.addEventListener('click', respondToButtonRandom);
 
-};
-buttonRandom.forEach(attachRandomClickEvent);
+
+
+
+
+
+})

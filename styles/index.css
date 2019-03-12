@@ -32,11 +32,12 @@ body {
 
 .output {
     color: pink;
+    text-shadow: 2px 2px black;
     font-family: 'Arvo', serif;
     font-size: 30px;
     text-align: center;
     width: 500px;
-    height: 150px;
+    height: 215px;
 }
 
 .hidden {
